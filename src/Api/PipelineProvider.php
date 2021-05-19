@@ -13,7 +13,7 @@ class PipelineProvider
     /**
      *  Get the pipeline for a particular action
      */
-    public function add($operationId, $action): void
+    public function add($operationId, $action): PipelineProvider
     {
         if (is_string($operationId)) {
             if (empty($this->pipes[$operationId])) {
@@ -26,6 +26,8 @@ class PipelineProvider
                 $this->add($value, $action);
             }
         }
+
+        return $this;
     }
 
     /**

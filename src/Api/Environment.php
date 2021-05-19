@@ -9,7 +9,8 @@ class Environment implements EnvironmentInterface
 {
     private $account;
     private $acl;
-    private $apiKey;
+    private $authenticator;
+    private $baseApiKey;
     private $baseUrl;
     private $requestBodyPipelineProvider;
     private $requestQueryPipelineProvider;
@@ -26,7 +27,7 @@ class Environment implements EnvironmentInterface
     /**
      *  Get environment account
      */
-    public function getAccount(): string
+    public function getAccount(): ?string
     {
         return $this->account;
     }
@@ -48,19 +49,35 @@ class Environment implements EnvironmentInterface
     }
 
     /**
+     *  Set authenticator
+     */
+    public function setAuthenticator(AuthenticatorInterface $authenticator): void
+    {
+        $this->authenticator = $authenticator;
+    }
+
+    /**
+     *  Get authenticator
+     */
+    public function getAuthenticator(): ?AuthenticatorInterface
+    {
+        return $this->authenticator;
+    }
+
+    /**
      *  Set environment ApiKey
      */
-    public function setApiKey(string $apiKey): void
+    public function setBaseApiKey(string $baseApiKey): void
     {
-        $this->apiKey = $apiKey;
+        $this->baseApiKey = $baseApiKey;
     }
 
     /**
      *  Get environment ApiKey
      */
-    public function getApiKey(): string
+    public function getBaseApiKey(): string
     {
-        return $this->apiKey;
+        return $this->baseApiKey;
     }
 
     /**

@@ -74,7 +74,7 @@ class ProxyRequestFactory
 
         $clone = $this->requestFactory->createRequest($request->getMethod(), $proxyRequestUrl)
             ->withHeader('User-Agent', 'OUTRAGEdns-Pdns-Proxy')
-            ->withHeader('X-Api-Key', $environment->getApiKey());
+            ->withHeader('X-Api-Key', $environment->getBaseApiKey());
 
         // we may need to modify our body at certain points so we'll add in pipelines in order to
         // account for this

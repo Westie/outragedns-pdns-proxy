@@ -10,9 +10,14 @@ interface EnvironmentInterface
     public function getAcl(): AclInterface;
 
     /**
+     *  Get environment account
+     */
+    public function getAccount(): ?string;
+
+    /**
      *  Get environment ApiKey
      */
-    public function getApiKey(): string;
+    public function getBaseApiKey(): string;
 
     /**
      *  Get environment BaseUrl

@@ -43,6 +43,17 @@ class RequestHandler
         // create our session
         $environment = $this->environmentFactory->createEnvironment($request);
 
+        // if no account has been defined, and there is an authenticator, then we can go ahead and
+        // authenticate the environment based on the X-Api-Key header
+        if ($environment->getAccount() === null) {
+            $apiKey = $request->getHeaderLine('X-Api-Key');
+            $apiAuthenticator = $environment->getAuthenticator();
+
+            if (!empty($apiAuthenticator)) {
+                $environment->setAccount($apiAuthenticator->authenticateToken($apiKey)->getAccount());
+            }
+        }
+
         // build our request
         $request = $this->proxyRequestFactory->createRequest($environment, $request, $route);
 
